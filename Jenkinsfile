@@ -1,22 +1,9 @@
 pipeline {
-    agent any
-
+    agent { docker { image 'maven:3.3.3' } }
     stages {
-        stage('compile') {
+        stage('build') {
             steps {
-                echo 'Compile Phase'
-                javac HelloName.java 
-            }
-        }
-        stage('run') {
-            steps {
-                echo 'Run Phase'
-                java HelloName
-            }
-        }
-        stage('test') {
-            steps {
-                echo 'Test Phase'
+                sh 'mvn --version'
             }
         }
     }
